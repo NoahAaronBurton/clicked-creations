@@ -6,19 +6,13 @@ import { FaUserAlt,FaSignOutAlt } from "react-icons/fa";
 
 
 function App() {
-  //todo: add user message feed
   const [user, setUser] = useState(null);
 
   const SocialChat = () => {
-    // const [chatMessage, setChatMessage] = useState('');
-    const [messages, setMessages] = useState([{content: "Let me write your social posts or give you feedback on your social strategy. Share some details about what you want to post about or give me a Keyword to get started.", role: "server"}]); // new array to store messages
-    const [userMessage, setUserMessage] = useState('');
+    //todo: add loading state and in progress chat bubble for system messages
+    const [messages, setMessages] = useState([{content: "Let me write your social posts or give you feedback on your social strategy. Share some details about what you want to post about or give me a Keyword to get started.", role: "system"}]); // new array to store messages
+    const [userMessage, setUserMessage] = useState(''); // contents of the field next to the send button
     
-    //when a message is received, add it to the messages array
-    const addMessage = (message) => {
-      setMessages((prevMessages) => [...prevMessages, message]);
-    }
-
     //map over the messages array and display each message
     const renderMessages = () => {
       return messages.map((message, index) => {
@@ -41,31 +35,16 @@ function App() {
       })
     }
 
-    const getChat = async () => {
+    const sendChat = async () => {
       try {
         const url = `${import.meta.env.VITE_API_URL}/chat/social`;
-        const { data } = await axios.get(url, { withCredentials: true });
-        console.log(data);
-        addMessage({ content: data.message, role: 'server' }); // add the received message to the messages array
+        const { data } = await axios.post(url, { userMessage: userMessage, messages: messages }, { withCredentials: true });
+        setMessages(data.messages); // update the messages array with the updated array from the server
+        setUserMessage('');
       } catch (error) {
         console.log(error);
       }
     }
-
-   
-
-    // const sendChat = async () => {
-    //   event.preventDefault();
-    //   try {
-    //     const url = `${import.meta.env.VITE_API_URL}/chat/social`;
-    //     const { data } = await axios.post(url, { message: userMessage }, { withCredentials: true });
-    //     console.log(data);
-    //     setUserMessage('');
-    //     getChat();
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // }
 
 
     return (
@@ -75,7 +54,7 @@ function App() {
             {renderMessages()}
           </div>
           <div className='flex w-full space-x-2'>
-            <button className="bg-blue-500 text-white px-4 py-2 rounded" onClick={getChat}>
+            <button className="bg-blue-300 text-white px-4 py-2 rounded" onClick={sendChat}>
               Send
             </button>
             <input className='w-full' type="text" value={userMessage} placeholder='What would you like to post? Please provide an ideal length, content direction, and tone/style' onChange={e => setUserMessage(e.target.value)} />
@@ -93,7 +72,7 @@ function App() {
       const url = `${import.meta.env.VITE_API_URL}/auth/login/success`;
       const { data } = await axios.get(url, { withCredentials: true });
       setUser(data.user);
-      console.log(data); // todo: remove google id from client side
+      // todo: remove google id from client side
 
     } catch (error) {
       console.log(error);
