@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import './App.css'
 import axios from 'axios'
-import { FaUserAlt,FaSignOutAlt } from "react-icons/fa";
+import { FaUserAlt, FaSignOutAlt} from "react-icons/fa";
+
 
 
 
@@ -12,30 +13,33 @@ function App() {
     //todo: add loading state and in progress chat bubble for system messages
     const [messages, setMessages] = useState([{content: "Let me write your social posts or give you feedback on your social strategy. Share some details about what you want to post about or give me a Keyword to get started.", role: "system"}]); // new array to store messages
     const [userMessage, setUserMessage] = useState(''); // contents of the field next to the send button
-    
+    const [isLoading, setIsLoading] = useState(false);
+
     //map over the messages array and display each message
     const renderMessages = () => {
-      return messages.map((message, index) => {
-        return (
-          <div key={index} className='rounded-lg p-2 mb-2'>
-            {message.role === 'user' ? (
-              //user message
-                <p className="bg-blue-500 text-black rounded-lg p-2">{message.content}</p>    
-            ) : (
-              //server message
-              <>
-                <p className="bg-gray-300 text-black rounded-lg p-2">{message.content}</p>
-                <p className='text-gray-500'>Social Assistant</p>
-              </>
-              
-            )}
-            
-          </div>
-        )
-      })
+      return (
+        <>
+          {messages.map((message, index) => {
+            return (
+              <div key={index} className='rounded-lg p-2 mb-2'>
+                {message.role === 'user' ? (
+                  <p className="bg-blue-500 text-black rounded-lg p-2">{message.content}</p>    
+                ) : (
+                  <>
+                    <p className="bg-gray-300 text-black rounded-lg p-2">{message.content}</p>
+                    <p className='text-gray-500'>Social Assistant</p>
+                  </>
+                )}
+              </div>
+            )
+          })}
+          {isLoading && <p>Loading...</p>}
+        </>
+      );
     }
 
     const sendChat = async () => {
+      setIsLoading(true);
       try {
         const url = `${import.meta.env.VITE_API_URL}/chat/social`;
         const { data } = await axios.post(url, { userMessage: userMessage, messages: messages }, { withCredentials: true });
@@ -44,6 +48,7 @@ function App() {
       } catch (error) {
         console.log(error);
       }
+      setIsLoading(false);
     }
 
 
