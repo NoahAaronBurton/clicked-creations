@@ -8,6 +8,31 @@ import { FaUserAlt,FaSignOutAlt } from "react-icons/fa";
 function App() {
   const [user, setUser] = useState(null);
 
+  const SocialChat = () => {
+    const [chatMessage, setChatMessage] = useState('');
+
+    const getChat = async () => {
+      try {
+        const url = `${import.meta.env.VITE_API_URL}/chat/social`;
+        const { data } = await axios.get(url, { withCredentials: true });
+        console.log(data);
+        setChatMessage(data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <button className="bg-blue-500 text-white px-4 py-2 rounded" onClick={getChat}>
+          Get Social Chat
+        </button>
+        <p>{chatMessage.message}</p>
+      </ div>
+    )
+  }
+
   
 
   // get user info from server
@@ -69,6 +94,7 @@ function App() {
   return (
     <div className='flex flex-col lg:px-[150px] font-inter'>  
       <Header />
+      <SocialChat />
     </div>
     
   )
