@@ -11,8 +11,9 @@ function App() {
 
   const SocialChat = () => {
     // const [chatMessage, setChatMessage] = useState('');
-    const [messages, setMessages] = useState([{content: "What would you like to post? Please provide an ideal length, content direction, and tone/style.", role: "server"}]); // new array to store messages
-
+    const [messages, setMessages] = useState([{content: "Let me write your social posts or give you feedback on your social strategy. Share some details about what you want to post about or give me a Keyword to get started.", role: "server"}]); // new array to store messages
+    const [userMessage, setUserMessage] = useState('');
+    
     //when a message is received, add it to the messages array
     const addMessage = (message) => {
       setMessages((prevMessages) => [...prevMessages, message]);
@@ -51,9 +52,7 @@ function App() {
       }
     }
 
-    // const handleUserMessageChange = (e) => {
-    //   setUserMessage(e.target.value);
-    // }
+   
 
     // const sendChat = async () => {
     //   event.preventDefault();
@@ -75,9 +74,12 @@ function App() {
           <div className="overflow-auto h-full">
             {renderMessages()}
           </div>
-          <button className="bg-blue-500 text-white px-4 py-2 rounded mb-4" onClick={getChat}>
-            Get Social Chat
-          </button>
+          <div className='flex w-full space-x-2'>
+            <button className="bg-blue-500 text-white px-4 py-2 rounded" onClick={getChat}>
+              Send
+            </button>
+            <input className='w-full' type="text" value={userMessage} placeholder='What would you like to post? Please provide an ideal length, content direction, and tone/style' onChange={e => setUserMessage(e.target.value)} />
+          </div>
         </div>
       </div>
     );
@@ -144,7 +146,9 @@ function App() {
   return (
     <div className='flex flex-col font-inter'>  
       <Header />
-      <SocialChat />
+      {user &&
+        <SocialChat />
+      }
     </div>
     
   )
