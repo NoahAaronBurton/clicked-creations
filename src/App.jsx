@@ -93,7 +93,7 @@ function App() {
   }
 
   const googleAuth = () => {
-    window.open(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/auth/google/callback`, '_self');
+    window.open(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/auth/google/callback`, '_self');
   }
 
   useEffect(() => {
