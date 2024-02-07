@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import './App.css'
 import axios from 'axios'
 import { FaUserAlt, FaSignOutAlt} from "react-icons/fa";
+import { TbSocial } from "react-icons/tb";
 
 
-
+//todo: update env with deploy url
 
 function App() {
   const [user, setUser] = useState(null);
@@ -40,7 +41,7 @@ function App() {
     const sendChat = async () => {
       setIsLoading(true);
       try {
-        const url = `${import.meta.env.VITE_API_URL}/chat/social`;
+        const url = `${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/chat/social`;
         const { data } = await axios.post(url, { userMessage: userMessage, messages: messages }, { withCredentials: true });
         setMessages(data.messages); // update the messages array with the updated array from the server
         setUserMessage('');
@@ -68,15 +69,13 @@ function App() {
     );
   }
 
-  
-
   // get user info from server
   const getUser = async () => {
     try {
-      const url = `${import.meta.env.VITE_API_URL}/auth/login/success`;
+      const url = `${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/auth/login/success`;
       const { data } = await axios.get(url, { withCredentials: true });
       setUser(data.user);
-      // todo: remove google id from client side
+
 
     } catch (error) {
       console.log(error);
@@ -85,7 +84,7 @@ function App() {
 
   const logout = async () => {
     try {
-      const url = `${import.meta.env.VITE_API_URL}/auth/logout`;
+      const url = `${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/auth/logout`;
       await axios.get(url, { withCredentials: true });
       setUser(null);
     } catch (error) {
@@ -94,7 +93,7 @@ function App() {
   }
 
   const googleAuth = () => {
-    window.open(`${import.meta.env.VITE_API_URL}/auth/google/callback`, '_self');
+    window.open(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/auth/google/callback`, '_self');
   }
 
   useEffect(() => {
@@ -128,12 +127,10 @@ function App() {
 
   return (
     <div className='flex h-screen'>
-      <nav className="h-full w-16 m-0 flex flex-col bg-gray-900 text-white shadow-lg">
-        <i>A</i>
-        <i>B</i>
-        <i>C</i>
-        <i>D</i>
-        <i>E</i>
+      <nav className="h-full w-16 m-0 flex flex-col bg-gray-900 text-white shadow-lg space-y-8 items-center">
+        <div className='mt-[92px]'>
+          <TbSocial size={'48px'} />
+        </div>
       </nav>
       <div className='flex flex-col font-inter w-full'>  
         <Header />
