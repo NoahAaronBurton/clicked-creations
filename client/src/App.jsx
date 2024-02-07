@@ -10,7 +10,6 @@ function App() {
   const [user, setUser] = useState(null);
 
   const SocialChat = () => {
-    //todo: add loading state and in progress chat bubble for system messages
     const [messages, setMessages] = useState([{content: "Let me write your social posts or give you feedback on your social strategy. Share some details about what you want to post about or give me a Keyword to get started.", role: "system"}]); // new array to store messages
     const [userMessage, setUserMessage] = useState(''); // contents of the field next to the send button
     const [isLoading, setIsLoading] = useState(false);
@@ -53,7 +52,7 @@ function App() {
 
 
     return (
-      <div className="container mx-auto  h-[75vh] md:w-3/4">
+      <div className="container mx-auto  h-[75vh] sm:4/4 md:w-3/4">
         <div className="flex flex-col justify-between bg-white p-4 rounded  h-full shadow-lg w-full ">
           <div className="overflow-auto h-full">
             {renderMessages()}
@@ -128,14 +127,22 @@ function App() {
   };
 
   return (
-    <div className='flex flex-col font-inter'>  
-      <Header />
-      {user &&
-        <SocialChat />
-      }
+    <div className='flex h-screen'>
+      <nav className="h-full w-16 m-0 flex flex-col bg-gray-900 text-white shadow-lg">
+        <i>A</i>
+        <i>B</i>
+        <i>C</i>
+        <i>D</i>
+        <i>E</i>
+      </nav>
+      <div className='flex flex-col font-inter w-full'>  
+        <Header />
+        {user &&
+          <SocialChat />
+        }
+      </div>
     </div>
-    
-  )
+  );
 }
 
 export default App
