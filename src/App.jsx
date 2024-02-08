@@ -6,68 +6,82 @@ import NavItem from './components/NavItem';
 import { TbSocial } from "react-icons/tb";
 const api = import.meta.env.VITE_API_URL;
 
+const Chat = ({initialMessage, onSendChat}) => {
+  const [messages, setMessages] = useState([{content: initialMessage, role: "system"}]); // new array to store messages
+  const [userMessage, setUserMessage] = useState(''); // contents of the field next to the send button
+  const [isLoading, setIsLoading] = useState(false);
+
+  const sendChat = async () => {
+    setIsLoading(true);
+    try {
+      const url = api +'/chat/social';
+      const { data } = await axios.post(url, { userMessage: userMessage, messages: messages }, { withCredentials: true });
+      setMessages(data.messages); // update the messages array with the updated array from the server
+      setUserMessage('');
+    } catch (error) {
+      console.log(error);
+    }
+    setIsLoading(false);
+  }
+
+  const renderMessages = () => {
+    return (
+      <>
+        {messages.map((message, index) => {
+          return (
+            <div key={index} className='rounded-lg p-2 mb-2'>
+              {message.role === 'user' ? (
+                <p className="bg-blue-500 text-black rounded-lg p-2">{message.content}</p>    
+              ) : (
+                <>
+                  <p className="bg-gray-300 text-black rounded-lg p-2">{message.content}</p>
+                  <p className='text-gray-500'>Social Assistant</p>
+                </>
+              )}
+            </div>
+          )
+        })}
+        {isLoading && <p>Loading...</p>}
+      </>
+    );
+  }
+
+  return (
+    <div className="container mx-auto  h-[75vh] sm:4/4 md:w-3/4">
+      <div className="flex flex-col justify-between bg-white p-4 rounded  h-full shadow-lg w-full ">
+        <div className="overflow-auto h-full">
+          {renderMessages()}
+        </div>
+        <div className='flex w-full space-x-2'>
+          <button className="bg-blue-300 text-white px-4 py-2 rounded" onClick={sendChat}>
+            Send
+          </button>
+          <input className='w-full' type="text" value={userMessage} placeholder='What would you like to post? Please provide an ideal length, content direction, and tone/style' onChange={e => setUserMessage(e.target.value)} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const SocialChat = () => {
+  const sendChatToServer = async (userMessage, messages) => {
+    const url = api +'/chat/social';
+    const { data } = await axios.post(url, { userMessage: userMessage, messages: messages }, { withCredentials: true });
+    return data.messages;
+  }
+
+  return (
+    <Chat 
+      initialMessage="Let me write your social posts or give you feedback on your social strategy. Share some details about what you want to post about or give me a Keyword to get started." 
+      onSendChat={sendChatToServer} 
+    />
+  );
+}
+
 
 function App() {
   const [user, setUser] = useState(null);
 
-  const SocialChat = () => {
-    const [messages, setMessages] = useState([{content: "Let me write your social posts or give you feedback on your social strategy. Share some details about what you want to post about or give me a Keyword to get started.", role: "system"}]); // new array to store messages
-    const [userMessage, setUserMessage] = useState(''); // contents of the field next to the send button
-    const [isLoading, setIsLoading] = useState(false);
-
-    //map over the messages array and display each message
-    const renderMessages = () => {
-      return (
-        <>
-          {messages.map((message, index) => {
-            return (
-              <div key={index} className='rounded-lg p-2 mb-2'>
-                {message.role === 'user' ? (
-                  <p className="bg-blue-500 text-black rounded-lg p-2">{message.content}</p>    
-                ) : (
-                  <>
-                    <p className="bg-gray-300 text-black rounded-lg p-2">{message.content}</p>
-                    <p className='text-gray-500'>Social Assistant</p>
-                  </>
-                )}
-              </div>
-            )
-          })}
-          {isLoading && <p>Loading...</p>}
-        </>
-      );
-    }
-
-    const sendChat = async () => {
-      setIsLoading(true);
-      try {
-        const url = api +'/chat/social';
-        const { data } = await axios.post(url, { userMessage: userMessage, messages: messages }, { withCredentials: true });
-        setMessages(data.messages); // update the messages array with the updated array from the server
-        setUserMessage('');
-      } catch (error) {
-        console.log(error);
-      }
-      setIsLoading(false);
-    }
-
-
-    return (
-      <div className="container mx-auto  h-[75vh] sm:4/4 md:w-3/4">
-        <div className="flex flex-col justify-between bg-white p-4 rounded  h-full shadow-lg w-full ">
-          <div className="overflow-auto h-full">
-            {renderMessages()}
-          </div>
-          <div className='flex w-full space-x-2'>
-            <button className="bg-blue-300 text-white px-4 py-2 rounded" onClick={sendChat}>
-              Send
-            </button>
-            <input className='w-full' type="text" value={userMessage} placeholder='What would you like to post? Please provide an ideal length, content direction, and tone/style' onChange={e => setUserMessage(e.target.value)} />
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   // get user info from server
   const getUser = async () => {
@@ -101,6 +115,14 @@ function App() {
     getUser();
   }, []);
 
+  const Nav = () => {
+    return (
+      <nav className="h-full w-16 m-0 flex flex-col bg-gray-200 text-white drop-shadow-xl space-y-8 items-center">
+        <NavItem name="social" icon={<TbSocial color='white' size={'48px'} />} onClick="" />
+      </nav>
+    );
+  }
+
   const Header = () => {
     return (
       <header className="flex justify-between items-center p-5 drop-shadow-lg">
@@ -126,13 +148,9 @@ function App() {
     );
   };
 
-  const Nav = () => {
-    return (
-      <nav className="h-full w-16 m-0 flex flex-col bg-gray-200 text-white drop-shadow-xl space-y-8 items-center">
-        <NavItem name="social" icon={<TbSocial color='white' size={'48px'} />} onClick="" />
-      </nav>
-    );
-  }
+ 
+   
+    
 
   return (
     <div className='flex h-screen'>
@@ -145,6 +163,10 @@ function App() {
       </div>
     </div>
   );
-}
+  }
+    
+
+
+
 
 export default App
