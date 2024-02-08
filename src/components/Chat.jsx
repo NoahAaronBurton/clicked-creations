@@ -2,6 +2,8 @@ import axios from 'axios'
 import { useState, useEffect } from 'react';
 const api = import.meta.env.VITE_API_URL;
 
+//todo: format chat output
+
 const Chat = ({initialMessage, onSendChat}) => {
     const [messages, setMessages] = useState([{content: initialMessage, role: "system"}]); // new array to store messages
     const [userMessage, setUserMessage] = useState(''); // contents of the field next to the send button

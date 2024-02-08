@@ -24,6 +24,22 @@ const SocialChat = () => {
   );
 }
 
+//blog chat component
+const BlogChat = () => {
+  const sendChatToServer = async (userMessage, messages) => {
+    const url = api +'/chat/blog';
+    const { data } = await axios.post(url, { userMessage: userMessage, messages: messages }, { withCredentials: true });
+    return data.messages;
+  }
+
+  return (
+    <Chat 
+      initialMessage="I can help write blog content for you! I have a range of skills including writing, editing, paraphrasing, summarizing, research, SEO optimization, adaptability, and citing sources. I can even analyze the style of your existing content to match. Share some details and let's get started!" 
+      onSendChat={sendChatToServer} 
+    />
+  );
+}
+
 
 function App() {
   const [user, setUser] = useState(null);
@@ -104,7 +120,7 @@ function App() {
       <div className='flex flex-col font-inter w-full'>  
         <Header />
         {user &&
-          <SocialChat />
+          <BlogChat />
         }
       </div>
     </div>
