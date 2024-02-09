@@ -44,6 +44,7 @@ const BlogChat = () => {
 
 function App() {
   const [user, setUser] = useState(null);
+  const [openTool, setOpenTool] = useState(null);
 
 
   // get user info from server
@@ -79,10 +80,11 @@ function App() {
   }, []);
 
   const Nav = () => {
+
     return (
       <nav className="h-full w-16 m-0 flex flex-col bg-gray-200 text-white drop-shadow-xl space-y-8 items-center justify-center">
-        <NavItem name="social" icon={TbSocial}  />
-        <NavItem name="blog" icon={FaMicroblog} />
+       <NavItem name="social" icon={TbSocial} onClick={() => setOpenTool('social')} />
+       <NavItem name="blog" icon={FaMicroblog} onClick={() => setOpenTool('blog')} />  
       </nav>
     );
   }
@@ -118,14 +120,13 @@ function App() {
 
   return (
     <div className='flex h-screen'>
-      {user && <Nav />}
-      <div className='flex flex-col font-inter w-full'>  
-        <Header />
-        {user &&
-          <BlogChat />
-        }
-      </div>
+    {user && <Nav />}
+    <div className='flex flex-col font-inter w-full'>  
+      <Header />
+      {user && openTool === 'blog' && <BlogChat />}
+      {user && openTool === 'social' && <SocialChat />}
     </div>
+  </div>
   );
   }
     
