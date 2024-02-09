@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
-import axios from 'axios';
 
-function SignUpForm() {
+import axios from 'axios';
+import { useState } from 'react';
+const api = import.meta.env.VITE_API_URL;
+
+function Account() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
@@ -10,7 +12,7 @@ function SignUpForm() {
         event.preventDefault();
 
         try {
-            const response = await axios.post('/signup', { email, password, name });
+            const response = await axios.post( api + '/auth/signup', { email, password, name });
             console.log(response.data);
         } catch (error) {
             console.error(error);
@@ -18,6 +20,8 @@ function SignUpForm() {
     };
 
     return (
+        <div className='container mx-auto  h-[75vh] sm:4/4 md:w-3/4'>
+            
         <form onSubmit={handleSubmit}>
             <label>
                 Name:
@@ -48,7 +52,8 @@ function SignUpForm() {
             </label>
             <button type="submit">Sign Up</button>
         </form>
+        </div>
     );
 }
 
-export default SignUpForm;
+export default Account;
