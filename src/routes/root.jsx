@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import './App.css'
+import '.././App.css'
 import axios from 'axios'
 import { FaUserAlt, FaSignOutAlt} from "react-icons/fa";
 import { FaMicroblog } from "react-icons/fa";
-import NavItem from './components/NavItem';
-import Chat from './components/Chat';
+import NavItem from '.././components/NavItem';
+import Chat from '.././components/Chat';
 import { TbSocial } from "react-icons/tb";
 const api = import.meta.env.VITE_API_URL;
 
@@ -42,7 +42,7 @@ const BlogChat = () => {
 }
 
 
-function App() {
+function Root() {
   const [user, setUser] = useState(null);
   const [openTool, setOpenTool] = useState(null);
 
@@ -134,4 +134,4 @@ function App() {
 
 
 
-export default App
+export default Root
