@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import './App.css'
 import axios from 'axios'
 import { FaUserAlt, FaSignOutAlt} from "react-icons/fa";
+import { FaMicroblog } from "react-icons/fa";
 import NavItem from './components/NavItem';
 import Chat from './components/Chat';
 import { TbSocial } from "react-icons/tb";
@@ -79,8 +80,9 @@ function App() {
 
   const Nav = () => {
     return (
-      <nav className="h-full w-16 m-0 flex flex-col bg-gray-200 text-white drop-shadow-xl space-y-8 items-center">
-        <NavItem name="social" icon={<TbSocial color='white' size={'48px'} />} onClick="" />
+      <nav className="h-full w-16 m-0 flex flex-col bg-gray-200 text-white drop-shadow-xl space-y-8 items-center justify-center">
+        <NavItem name="social" icon={TbSocial}  />
+        <NavItem name="blog" icon={FaMicroblog} />
       </nav>
     );
   }
