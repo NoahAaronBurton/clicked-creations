@@ -85,7 +85,6 @@ function Root() {
   const Nav = () => {
     return (
       <nav className="h-full w-16 m-0 flex flex-col bg-gray-200 text-white drop-shadow-xl space-y-8 items-center justify-center">
-        <NavItem name="account" icon={VscAccount} onClick={() => setOpenTool('account')} />  
         <NavItem name="social" icon={TbSocial} onClick={() => setOpenTool('social')} />
         <NavItem name="blog" icon={FaMicroblog} onClick={() => setOpenTool('blog')} />
       </nav>
@@ -100,6 +99,9 @@ function Root() {
           <p className="text-sm">Marketing Your Product with AI</p>
         </div>
         <div className="flex items-center">
+          {user && <p className="mr-4">{user.name}</p>}
+          {<VscAccount size='48px' onClick={() => setOpenTool('account')} />}
+          {user && <FaSignOutAlt onClick={logout} />}
         </div>
       </header>
     );
@@ -116,7 +118,7 @@ function Root() {
       <Header />
       {user && openTool === 'blog' && <BlogChat />}
       {user && openTool === 'social' && <SocialChat />}
-      {openTool === 'account' && <Account />}
+      {openTool === 'account' && <Account getUser={getUser} setUser={setUser} setOpenTool={setOpenTool} />}
     </div>
   </div>
   );
