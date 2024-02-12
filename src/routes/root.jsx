@@ -3,9 +3,11 @@ import '.././App.css'
 import axios from 'axios'
 import { FaUserAlt, FaSignOutAlt} from "react-icons/fa";
 import { FaMicroblog } from "react-icons/fa";
+import { VscAccount } from "react-icons/vsc";
 import NavItem from '.././components/NavItem';
 import Chat from '.././components/Chat';
 import { TbSocial } from "react-icons/tb";
+import Account from '../Account';
 const api = import.meta.env.VITE_API_URL;
 
 
@@ -46,6 +48,9 @@ function Root() {
   const [user, setUser] = useState(null);
   const [openTool, setOpenTool] = useState(null);
 
+  console.log('User:', user);
+  console.log('Open tool:', openTool);
+
 
   // get user info from server
   const getUser = async () => {
@@ -71,20 +76,18 @@ function Root() {
     }
   }
 
-  const googleAuth = () => {
-    window.open(api + '/auth/google/callback', '_self');
-  }
+
 
   useEffect(() => {
     getUser();
   }, []);
 
   const Nav = () => {
-
     return (
       <nav className="h-full w-16 m-0 flex flex-col bg-gray-200 text-white drop-shadow-xl space-y-8 items-center justify-center">
-       <NavItem name="social" icon={TbSocial} onClick={() => setOpenTool('social')} />
-       <NavItem name="blog" icon={FaMicroblog} onClick={() => setOpenTool('blog')} />  
+        <NavItem name="account" icon={VscAccount} onClick={() => setOpenTool('account')} />  
+        <NavItem name="social" icon={TbSocial} onClick={() => setOpenTool('social')} />
+        <NavItem name="blog" icon={FaMicroblog} onClick={() => setOpenTool('blog')} />
       </nav>
     );
   }
@@ -97,18 +100,6 @@ function Root() {
           <p className="text-sm">Marketing Your Product with AI</p>
         </div>
         <div className="flex items-center">
-          {user ? (
-            <>
-              <FaUserAlt className='mr-2' />
-              <p>{user.name}</p>
-              
-              <FaSignOutAlt className='ml-2 hover:text-blue-500' onClick={logout} />
-            </>
-          ) : (
-            <button className="bg-blue-500 text-white px-4 py-2 rounded" onClick={googleAuth}>
-              Sign in with Google
-            </button>
-          )}
         </div>
       </header>
     );
@@ -120,11 +111,12 @@ function Root() {
 
   return (
     <div className='flex h-screen'>
-    {user && <Nav />}
+    <Nav />
     <div className='flex flex-col font-inter w-full'>  
       <Header />
       {user && openTool === 'blog' && <BlogChat />}
       {user && openTool === 'social' && <SocialChat />}
+      {openTool === 'account' && <Account />}
     </div>
   </div>
   );

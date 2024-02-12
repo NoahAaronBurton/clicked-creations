@@ -19,8 +19,14 @@ function Account() {
         }
     };
 
+    const googleAuth = () => {
+        window.open(api + '/auth/google/callback', '_self');
+      };
+
     return (
         <div className='container mx-auto  h-[75vh] sm:4/4 md:w-3/4'>
+
+            <button onClick={googleAuth}>Sign in with Google</button>
             
         <form onSubmit={handleSubmit}>
             <label>
