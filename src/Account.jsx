@@ -2,10 +2,9 @@
 import axios from 'axios';
 import { useState } from 'react';
 const api = import.meta.env.VITE_API_URL;
-import { useNavigate } from 'react-router-dom';
+import { FaSignOutAlt } from 'react-icons/fa';
 
-function Account({setUser, getUser, setOpenTool}) {
-    const navigate = useNavigate();
+function Account({setUser, getUser, setOpenTool, logout, user}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
@@ -51,65 +50,78 @@ function Account({setUser, getUser, setOpenTool}) {
     
 
     return (
-        <div className='container mx-auto  h-[75vh] sm:4/4 md:w-3/4'>
+        <>
+        {user ? (
+            <div className='container mx-auto  h-[75vh] sm:4/4 md:w-3/4 align-center'>
+                <h1>Welcome {user.name}</h1>
+                <button onClick={logout} className='flex space-x-2 bg-red-600 hover:bg-red-400 rounded-lg' >
+                    <p>Click here to log out</p> 
+                    <FaSignOutAlt size='24px'  />
+                </button>
+            </div>
+        ) : (
 
+        <div className='container mx-auto  h-[75vh] sm:4/4 md:w-3/4'>
             <button onClick={googleAuth}>Sign in with Google</button>
             <br />
-            
-        <form onSubmit={signupSubmit}>
-            <label>
-                Name:
-                <input
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                />
-            </label>
-            <label>
-                Email:
-                <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
-            </label>
-            <label>
-                Password:
-                <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-            </label>
-            <button type="submit">Sign Up</button>
-        </form>
+                
+            <form onSubmit={signupSubmit}>
+                <label>
+                    Name:
+                    <input
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                    />
+                </label>
+                <label>
+                    Email:
+                    <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                </label>
+                <label>
+                    Password:
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                </label>
+                <button type="submit">Sign Up</button>
+            </form>
 
-        <h1>log in</h1>
-        <form onSubmit={passwordAuth}>
-            <label>
-                Email:
-                <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
-            </label>
-            <label>
-                Password:
-                <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-            </label>
-            <button type="submit">Log In</button>
-        </form>
+            <h1>log in</h1>
+            <form onSubmit={passwordAuth}>
+                <label>
+                    Email:
+                    <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                </label>
+                <label>
+                    Password:
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                </label>
+                <button type="submit">Log In</button>
+            </form>
         </div>
+        )}
+
+        </>
     );
 }
 

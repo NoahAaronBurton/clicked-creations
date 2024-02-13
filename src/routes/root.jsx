@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import '.././App.css'
 import axios from 'axios'
-import { FaUserAlt, FaSignOutAlt} from "react-icons/fa";
+import { FaUserAlt} from "react-icons/fa";
 import { FaMicroblog } from "react-icons/fa";
 import { VscAccount } from "react-icons/vsc";
 import NavItem from '.././components/NavItem';
@@ -101,7 +101,7 @@ function Root() {
         <div className="flex items-center">
           {user && <p className="mr-4">{user.name}</p>}
           {<VscAccount size='48px' onClick={() => setOpenTool('account')} />}
-          {user && <FaSignOutAlt onClick={logout} />}
+          
         </div>
       </header>
     );
@@ -118,7 +118,7 @@ function Root() {
       <Header />
       {user && openTool === 'blog' && <BlogChat />}
       {user && openTool === 'social' && <SocialChat />}
-      {openTool === 'account' && <Account getUser={getUser} setUser={setUser} setOpenTool={setOpenTool} />}
+      {openTool === 'account' && <Account getUser={getUser} setUser={setUser} setOpenTool={setOpenTool} logout={logout} user={user}/>}
     </div>
   </div>
   );
