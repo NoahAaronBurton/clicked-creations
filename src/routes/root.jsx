@@ -124,7 +124,8 @@ function Root() {
     {user && <Nav />}
     <div className='flex flex-col w-full overflow-y-auto'>  
       <Header />
-      {!openTool && <Welcome />}
+      {!openTool && user && <Welcome />}
+      {!openTool && !user && <p>Sign in on the top right of the page to begin</p>}
       {user && openTool === 'blog' && <BlogChat />}
       {user && openTool === 'social' && <SocialChat />}
       {openTool === 'account' && <Account getUser={getUser} setUser={setUser} setOpenTool={setOpenTool} logout={logout} user={user}/>}
