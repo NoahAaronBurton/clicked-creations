@@ -112,9 +112,9 @@ function Root() {
     
 
   return (
-    <div className='flex h-screen'>
+    <div className='flex font-inter h-screen'>
     <Nav />
-    <div className='flex flex-col font-inter w-full'>  
+    <div className='flex flex-col w-full overflow-y-auto'>  
       <Header />
       {user && openTool === 'blog' && <BlogChat />}
       {user && openTool === 'social' && <SocialChat />}
