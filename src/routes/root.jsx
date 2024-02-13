@@ -107,15 +107,24 @@ function Root() {
     );
   };
 
+  const Welcome = () => {
+    return (
+      <div className="flex flex-col items-center justify-center h-full">
+        <h1 className="text-4xl font-bold">Welcome to Clicked Creations</h1>
+        <p className="text-lg">Select a tool to get started</p>
+      </div>
+    );
+  }
  
    
     
 
   return (
     <div className='flex font-inter h-screen'>
-    <Nav />
+    {user && <Nav />}
     <div className='flex flex-col w-full overflow-y-auto'>  
       <Header />
+      {!openTool && <Welcome />}
       {user && openTool === 'blog' && <BlogChat />}
       {user && openTool === 'social' && <SocialChat />}
       {openTool === 'account' && <Account getUser={getUser} setUser={setUser} setOpenTool={setOpenTool} logout={logout} user={user}/>}
