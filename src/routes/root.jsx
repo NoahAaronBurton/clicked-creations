@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
-import './App.css'
+import '.././App.css'
 import axios from 'axios'
-import { FaUserAlt, FaSignOutAlt} from "react-icons/fa";
+import { FaUserAlt} from "react-icons/fa";
 import { FaMicroblog } from "react-icons/fa";
-import NavItem from './components/NavItem';
-import Chat from './components/Chat';
+import { VscAccount } from "react-icons/vsc";
+import NavItem from '.././components/NavItem';
+import Chat from '.././components/Chat';
 import { TbSocial } from "react-icons/tb";
+import Account from '../Account';
 const api = import.meta.env.VITE_API_URL;
 
 
@@ -42,9 +44,12 @@ const BlogChat = () => {
 }
 
 
-function App() {
+function Root() {
   const [user, setUser] = useState(null);
   const [openTool, setOpenTool] = useState(null);
+
+  console.log('User:', user);
+  console.log('Open tool:', openTool);
 
 
   // get user info from server
@@ -71,20 +76,17 @@ function App() {
     }
   }
 
-  const googleAuth = () => {
-    window.open(api + '/auth/google/callback', '_self');
-  }
+
 
   useEffect(() => {
     getUser();
   }, []);
 
   const Nav = () => {
-
     return (
       <nav className="h-full w-16 m-0 flex flex-col bg-gray-200 text-white drop-shadow-xl space-y-8 items-center justify-center">
-       <NavItem name="social" icon={TbSocial} onClick={() => setOpenTool('social')} />
-       <NavItem name="blog" icon={FaMicroblog} onClick={() => setOpenTool('blog')} />  
+        <NavItem name="social" icon={TbSocial} onClick={() => setOpenTool('social')} />
+        <NavItem name="blog" icon={FaMicroblog} onClick={() => setOpenTool('blog')} />
       </nav>
     );
   }
@@ -97,34 +99,35 @@ function App() {
           <p className="text-sm">Marketing Your Product with AI</p>
         </div>
         <div className="flex items-center">
-          {user ? (
-            <>
-              <FaUserAlt className='mr-2' />
-              <p>{user.name}</p>
-              
-              <FaSignOutAlt className='ml-2 hover:text-blue-500' onClick={logout} />
-            </>
-          ) : (
-            <button className="bg-blue-500 text-white px-4 py-2 rounded" onClick={googleAuth}>
-              Sign in with Google
-            </button>
-          )}
+          {user && <p className="mr-4">{user.name}</p>}
+          {<VscAccount size='48px' onClick={() => setOpenTool('account')} />}
+          
         </div>
       </header>
     );
   };
 
+  const Welcome = () => {
+    return (
+      <div className="flex flex-col items-center justify-center h-full">
+        <h1 className="text-4xl font-bold">Welcome to Clicked Creations</h1>
+        <p className="text-lg">Select a tool to get started</p>
+      </div>
+    );
+  }
  
    
     
 
   return (
-    <div className='flex h-screen'>
+    <div className='flex font-inter h-screen'>
     {user && <Nav />}
-    <div className='flex flex-col font-inter w-full'>  
+    <div className='flex flex-col w-full overflow-y-auto'>  
       <Header />
+      {!openTool && <Welcome />}
       {user && openTool === 'blog' && <BlogChat />}
       {user && openTool === 'social' && <SocialChat />}
+      {openTool === 'account' && <Account getUser={getUser} setUser={setUser} setOpenTool={setOpenTool} logout={logout} user={user}/>}
     </div>
   </div>
   );
@@ -134,4 +137,4 @@ function App() {
 
 
 
-export default App
+export default Root
