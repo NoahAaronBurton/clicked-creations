@@ -4,8 +4,10 @@ import axios from 'axios'
 import { FaUserAlt} from "react-icons/fa";
 import { FaMicroblog } from "react-icons/fa";
 import { VscAccount } from "react-icons/vsc";
+import { FaRegImage } from "react-icons/fa6";
 import NavItem from '.././components/NavItem';
 import Chat from '.././components/Chat';
+import ImageForm from '../components/Image';
 import { TbSocial } from "react-icons/tb";
 import Account from '../Account';
 const api = import.meta.env.VITE_API_URL;
@@ -87,6 +89,7 @@ function Root() {
       <nav className="h-full w-16 m-0 flex flex-col bg-gray-200 text-white drop-shadow-xl space-y-8 items-center justify-center">
         <NavItem name="social" icon={TbSocial} onClick={() => setOpenTool('social')} />
         <NavItem name="blog" icon={FaMicroblog} onClick={() => setOpenTool('blog')} />
+        <NavItem name="image" icon={FaRegImage} onClick={() => setOpenTool('image')} />
       </nav>
     );
   }
@@ -129,6 +132,7 @@ function Root() {
       {user && openTool === 'blog' && <BlogChat />}
       {user && openTool === 'social' && <SocialChat />}
       {openTool === 'account' && <Account getUser={getUser} setUser={setUser} setOpenTool={setOpenTool} logout={logout} user={user}/>}
+      {openTool === 'image' && <ImageForm />}
     </div>
   </div>
   );
