@@ -10,6 +10,7 @@ const ImageForm = () => {
   const [size, setSize] = useState('1792x1024');
   const [style, setStyle] = useState('vivid');
   const [image, setImage] = useState(null); // Base64 string
+  const [imgloading, setImgLoading] = useState(false);
 
   const handlePromptChange = (e) => {
     setPrompt(e.target.value);
@@ -28,8 +29,9 @@ const ImageForm = () => {
   };
 
   const handleSubmit = async (e) => {
+    setImgLoading(true);
     try {
-        console.log('submitting img request');
+    console.log('submitting img request');
     e.preventDefault();
     const url = api + '/image/generate';
     const {data} = await axios.post(url, {
@@ -43,9 +45,11 @@ const ImageForm = () => {
     // Create a data URL from the Base64 string
     const imageUrl = `data:image/jpeg;base64,${data.data[0].b64_json}`;
 
+    setImgLoading(false);
     setImage(imageUrl);
     console.log('image:', imageUrl);
 } catch (error) {
+  setImgLoading(false);
     console.log(error);
 }
   };
@@ -85,6 +89,7 @@ const ImageForm = () => {
         {!image && size === '1024x1024' && <img src="https://via.placeholder.com/1024x1024" alt="placeholder" />}
         {!image && size === '1792x1024' && <img src="https://via.placeholder.com/1792x1024" alt="placeholder" />}
         {!image && size === '1024x1792' && <img src="https://via.placeholder.com/1024x1792" alt="placeholder" />}
+      {imgloading && <div className='flex justify-center bg-blue-400 w-full'>Loading...</div>}
     <form className='grid grid-cols-2 bg-slate-100' onSubmit={handleSubmit}>
       <div className='flex justify-center' >
         <label htmlFor="prompt">Prompt:</label>
