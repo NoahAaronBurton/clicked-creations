@@ -47,10 +47,13 @@ const ImageForm = () => {
   };
 
   return (
-    <div>
-        <h1 className='text-4xl mb-5'>Image Generator</h1>
-        {image && <img className='' src={image} alt="generated image" />}
-        
+    <div className='container mx-auto  h-[75vh] sm:4/4 md:w-3/4'>
+        <h1 className='text-4xl'>Image Generator</h1>
+        <p className='mb-5'>Complete the Prompt below and click Submit to generate an image! </p>
+        {image && <img src={image} alt="generated image" />}
+        {!image && size === '1024x1024' && <img src="https://via.placeholder.com/1024x1024" alt="placeholder" />}
+        {!image && size === '1792x1024' && <img src="https://via.placeholder.com/1792x1024" alt="placeholder" />}
+        {!image && size === '1024x1792' && <img src="https://via.placeholder.com/1024x1792" alt="placeholder" />}
     <form className='bg-slate-100' onSubmit={handleSubmit}>
       <div>
         <label htmlFor="prompt">Prompt:</label>
