@@ -1,14 +1,15 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
+import fs from 'fs';
 const api = import.meta.env.VITE_API_URL;
 
 const ImageForm = () => {
   const [prompt, setPrompt] = useState('');
   const [quality, setQuality] = useState('standard');
-  const [size, setSize] = useState('1024x1024');
+  const [size, setSize] = useState('1792x1024');
   const [style, setStyle] = useState('vivid');
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState(null); // Base64 string
 
   const handlePromptChange = (e) => {
     setPrompt(e.target.value);
@@ -39,11 +40,41 @@ const ImageForm = () => {
     },
     { withCredentials: true });
     console.log(data);
-    setImage(data.data[0].url);
-    console.log('image:', image);
+    // Create a data URL from the Base64 string
+    const imageUrl = `data:image/jpeg;base64,${data.data[0].b64_json}`;
+
+    setImage(imageUrl);
+    console.log('image:', imageUrl);
 } catch (error) {
     console.log(error);
 }
+  };
+
+  // download image from binary json
+  const handleDownload = async (e) => {
+    e.preventDefault();
+  
+    try {
+      // Remove the data URL prefix and decode the Base64 string
+      const base64String = image.replace('data:image/jpeg;base64,', '');
+      const binaryString = atob(base64String);
+      const len = binaryString.length;
+      const bytes = new Uint8Array(len);
+      for (let i = 0; i < len; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
+      }
+      const blob = new Blob([bytes.buffer], {type: 'image/jpeg'});
+  
+      // Create an object URL for the Blob and initiate a download
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'image.jpg');
+      document.body.appendChild(link);
+      link.click();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -85,6 +116,7 @@ const ImageForm = () => {
     <div className='flex flex-col space-y-2 justify-center'>
       <button className='rounded full text-white bg-gradient-to-r from-green-500 to-red-500' type="submit" onClick={handleSubmit}>Submit</button>
       {image && <button className='rounded full text-white bg-gradient-to-r from-blue-500 to-red-500' onClick={handleSubmit}>Regenerate</button>}
+      {image && <button className='rounded full text-white w-full bg-gradient-to-r from-purple-500 to-orange-500' onClick={handleDownload}>Download Image</button>}
     </div>  
 
     </div>
