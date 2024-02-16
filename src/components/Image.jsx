@@ -82,7 +82,11 @@ const ImageForm = () => {
         </select>
       </div>
     </form>
-      <button className='rounded full text-white w-full bg-gradient-to-r from-green-500 to-red-500' type="submit" onClick={handleSubmit}>Submit</button>
+    <div className='flex flex-col space-y-2 justify-center'>
+      <button className='rounded full text-white bg-gradient-to-r from-green-500 to-red-500' type="submit" onClick={handleSubmit}>Submit</button>
+      {image && <button className='rounded full text-white bg-gradient-to-r from-blue-500 to-red-500' onClick={handleSubmit}>Regenerate</button>}
+    </div>  
+
     </div>
   );
 };
