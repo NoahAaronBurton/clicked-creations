@@ -54,19 +54,19 @@ const ImageForm = () => {
         {!image && size === '1024x1024' && <img src="https://via.placeholder.com/1024x1024" alt="placeholder" />}
         {!image && size === '1792x1024' && <img src="https://via.placeholder.com/1792x1024" alt="placeholder" />}
         {!image && size === '1024x1792' && <img src="https://via.placeholder.com/1024x1792" alt="placeholder" />}
-    <form className='bg-slate-100' onSubmit={handleSubmit}>
-      <div>
+    <form className='grid grid-cols-2 bg-slate-100' onSubmit={handleSubmit}>
+      <div className='flex justify-center' >
         <label htmlFor="prompt">Prompt:</label>
-        <input type="text" id="prompt" value={prompt} onChange={handlePromptChange} />
+        <input className='w-full' type="text" id="prompt" value={prompt} onChange={handlePromptChange} />
       </div>
-      <div>
+      <div className='flex justify-center'>
         <label htmlFor="quality">Quality:</label>
         <select id="quality" value={quality} onChange={handleQualityChange}>
           <option value="standard">Standard</option>
           <option value="hd">HD</option>
         </select>
       </div>
-      <div>
+      <div className='flex justify-center' >
         <label htmlFor="size">Size:</label>
         <select id="size" value={size} onChange={handleSizeChange}>
           <option value="1024x1024">1024x1024</option>
@@ -74,15 +74,15 @@ const ImageForm = () => {
           <option value="1024x1792">1024x1792</option>
         </select>
       </div>
-      <div>
+      <div className='flex justify-center' >
         <label htmlFor="style">Style:</label>
         <select id="style" value={style} onChange={handleStyleChange}>
           <option value="vivid">Vivid</option>
           <option value="natural">Natural</option>
         </select>
       </div>
-      <button type="submit">Submit</button>
     </form>
+      <button className='rounded full text-white w-full bg-gradient-to-r from-green-500 to-red-500' type="submit" onClick={handleSubmit}>Submit</button>
     </div>
   );
 };
