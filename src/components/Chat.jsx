@@ -51,9 +51,10 @@ const Chat = ({initialMessage, onSendChat}) => {
             {renderMessages()}
           </div>
           <div className='flex w-full space-x-2'>
-            <button className="bg-blue-300 text-white px-4 py-2 rounded" onClick={sendChat}>
+            {!isLoading && <button className="bg-blue-300 text-white px-4 py-2 rounded" onClick={sendChat}>
               Send
-            </button>
+            </button>}
+            {isLoading && <p>Loading...</p>}
             <input className='w-full' type="text" value={userMessage} placeholder='What would you like to post? Please provide an ideal length, content direction, and tone/style' onChange={e => setUserMessage(e.target.value)} />
           </div>
         </div>

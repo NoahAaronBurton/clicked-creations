@@ -119,7 +119,7 @@ const ImageForm = () => {
       </div>
     </form>
     <div className='flex flex-col space-y-2 justify-center'>
-      <button className='rounded full text-white bg-gradient-to-r from-green-500 to-red-500' type="submit" onClick={handleSubmit}>Submit</button>
+      {!imgloading && <button className='rounded full text-white bg-gradient-to-r from-green-500 to-red-500' type="submit" onClick={handleSubmit}>Submit</button>}
       {image && <button className='rounded full text-white bg-gradient-to-r from-blue-500 to-red-500' onClick={handleSubmit}>Regenerate</button>}
       {image && <button className='rounded full text-white w-full bg-gradient-to-r from-purple-500 to-orange-500' onClick={handleDownload}>Download Image</button>}
     </div>  
