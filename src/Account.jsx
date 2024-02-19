@@ -9,6 +9,7 @@ function Account({setUser, getUser, setOpenTool, logout, user}) {
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [LocalAuthError, setLocalAuthError] = useState('');
 
     // axios.interceptors.request.use(request => {
     //     console.log('Starting Request', JSON.stringify(request, null, 2));
@@ -24,11 +25,13 @@ function Account({setUser, getUser, setOpenTool, logout, user}) {
         try {
             console.log('signupSubmit')
             const response = await axios.post( api + '/auth/signup', { email, password, name });
+            setError('');
             console.log(response.data);
             setUser(response.data.user);
             setOpenTool('social');
         } catch (error) {
             console.error(error);
+            setError(error.message);
         }
     };
 
@@ -40,16 +43,18 @@ function Account({setUser, getUser, setOpenTool, logout, user}) {
         event.preventDefault();
         console.log('passwordAuth')
         try {
-            console.log('passwordAuth')
-            console.log(email)
-            console.log(password)
+            // console.log('passwordAuth')
+            // console.log(email)
+            // console.log(password)
             const response = await axios.post( api + '/auth/login/password', { email, password });
+            setLocalAuthError('');
             console.log()
             console.log(response.data);
             setUser(response.data.user);
             setOpenTool('social');
         } catch (error) {
             console.error(error);
+            setLocalAuthError(error.response.data.message);
         }
     }    
     
@@ -144,6 +149,7 @@ function Account({setUser, getUser, setOpenTool, logout, user}) {
                         </label>
                     </form>
                         <button className='justify-center w-full mt-4 rounded-full bg-gradient-to-r from-purple-400 to-orange-500 text-white' onClick={passwordAuth}>Log In</button>
+                        {LocalAuthError && <div className='border-2 border-red-500/100'><p>{LocalAuthError}</p></div>}
             </div>
         </div>
         )}
