@@ -10,6 +10,7 @@ function Account({setUser, getUser, setOpenTool, logout, user}) {
     const [name, setName] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [LocalAuthError, setLocalAuthError] = useState('');
+    const [signupError, setSignupError] = useState('');
 
     // axios.interceptors.request.use(request => {
     //     console.log('Starting Request', JSON.stringify(request, null, 2));
@@ -25,13 +26,13 @@ function Account({setUser, getUser, setOpenTool, logout, user}) {
         try {
             console.log('signupSubmit')
             const response = await axios.post( api + '/auth/signup', { email, password, name });
-            setError('');
+            setSignupError('');
             console.log(response.data);
             setUser(response.data.user);
             setOpenTool('social');
         } catch (error) {
             console.error(error);
-            setError(error.message);
+            setSignupError(error.response.data.message);
         }
     };
 
@@ -122,6 +123,7 @@ function Account({setUser, getUser, setOpenTool, logout, user}) {
                     </label>
                 </form>
                 <button className='justify-center w-full mt-4 rounded-full bg-gradient-to-r from-red-500 to-orange-500 text-white' onClick={signupSubmit}>Sign Up</button>
+                {signupError && <div className='border-2 border-red-500/100'><p>{signupError}</p></div>}
             </div>    
 
 
