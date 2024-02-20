@@ -45,7 +45,7 @@ const Chat = ({initialMessage, onSendChat}) => {
     }
   
     return (
-      <div className="container mx-auto  h-[75vh] sm:4/4 md:w-3/4">
+      <div className="container mx-auto h-[75vh] sm:4/4 md:w-3/4">
         <div className="flex flex-col justify-between bg-white p-4 rounded  h-full shadow-lg w-full ">
           <div className="overflow-auto h-full">
             {renderMessages()}
