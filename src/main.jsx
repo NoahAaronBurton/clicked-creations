@@ -8,14 +8,19 @@ import {
 } from "react-router-dom";
 
 import Root from './routes/root.jsx'
+import Landing from './Landing.jsx';
 
-
+// todo: serve landing page
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
+    element: <Landing />,
   },
+  {
+    path: "/home",
+    element: <Root />,
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

@@ -48,7 +48,7 @@ const BlogChat = () => {
 
 function Root() {
   const [user, setUser] = useState(null);
-  const [openTool, setOpenTool] = useState(null);
+  const [openTool, setOpenTool] = useState('account');
 
   console.log('User:', user);
   console.log('Open tool:', openTool);
