@@ -123,7 +123,7 @@ function Root() {
     
 
   return (
-    <div className='flex font-inter h-screen'>
+    <div className='flex h-screen'>
     {user && <Nav />}
     <div className='flex flex-col w-full overflow-y-auto'>  
       <Header />
