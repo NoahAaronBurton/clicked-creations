@@ -2,13 +2,15 @@ import Button from './components/Button';
 import InfoCard from './components/InfoCard';
 
 export default function Landing() {   
+    const backgroundImage =  "url('src/assets/grid-mist.png')";
+
     function goHome(e) {
         e.preventDefault();
         window.location.href = "/home";
     }
     return (
-        <div className="flex flex-col w-full overflow-y-auto">
-            <div id="jumbotron" className="flex flex-col px-2 h-full w-full items-center justify-center text-black bg-gradient-to-b from-primary to-[#27272A]">
+        <div className="flex flex-col w-full overflow-y-auto bg-fixed bg-overlay" style={{backgroundImage}}>
+            <div id="jumbotron" className="flex flex-col px-2 h-full w-full items-center justify-center text-black">
                 <div className="flex justify-between items-center w-full mb-6 md:mb-20">
                     <h1 className="sm:text-4xl md:text-6xl">
                         <strong>Clicked</strong> Creations
