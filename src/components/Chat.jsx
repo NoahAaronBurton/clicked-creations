@@ -27,13 +27,13 @@ const Chat = ({initialMessage, onSendChat}) => {
         <>
           {messages.map((message, index) => {
             return (
-              <div key={index} className='rounded-lg p-2 mb-2'>
+              <div key={index} className='rounded-lg p-2 mb-2 drop-shadow-lg'>
                 {message.role === 'user' ? (
                   <p className="bg-blue-500 text-black rounded-lg p-2">{message.content}</p>    
                 ) : (
                   <>
                     <p className="bg-gray-300 text-black rounded-lg p-2">{message.content}</p>
-                    <p className='text-gray-500'>Social Assistant</p>
+                    <p className='text-black'>Social Assistant</p>
                   </>
                 )}
               </div>
@@ -45,17 +45,17 @@ const Chat = ({initialMessage, onSendChat}) => {
     }
   
     return (
-      <div className="container mx-auto  h-[75vh] sm:4/4 md:w-3/4">
-        <div className="flex flex-col justify-between bg-white p-4 rounded  h-full shadow-lg w-full ">
+      <div className="container mx-auto h-[75vh] sm:4/4 md:w-3/4">
+        <div className="flex flex-col justify-between bg-gray-400 drop-shadow-xl p-4 rounded  h-full shadow-lg w-full ">
           <div className="overflow-auto h-full">
             {renderMessages()}
           </div>
           <div className='flex w-full space-x-2'>
-            {!isLoading && <button className="bg-blue-300 text-white px-4 py-2 rounded" onClick={sendChat}>
+            {!isLoading && <button className="bg-blue-300 text-white px-4 py-2 rounded drop-shadow-xl" onClick={sendChat}>
               Send
             </button>}
             {isLoading && <p>Loading...</p>}
-            <input className='w-full' type="text" value={userMessage} placeholder='What would you like to post? Please provide an ideal length, content direction, and tone/style' onChange={e => setUserMessage(e.target.value)} />
+            <textarea className='w-full rounded drop-shadow-xl ring-2 text-white' value={userMessage} placeholder='What would you like to post? Please provide an ideal length, content direction, and tone/style' onChange={e => setUserMessage(e.target.value)} />
           </div>
         </div>
       </div>

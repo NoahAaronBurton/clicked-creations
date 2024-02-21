@@ -82,44 +82,44 @@ const ImageForm = () => {
   };
 
   return (
-    <div className='container mx-auto  h-[75vh] sm:4/4 md:w-3/4'>
-        <h1 className='text-4xl'>Image Generator</h1>
+    <div className='container mx-auto  h-[75vh] p-2 sm:4/4 md:w-3/4'>
+        <h1 className='text-4xl mb-4'>Image Generator</h1>
         <p className='mb-5'>Complete the Prompt below and click Submit to generate an image! </p>
         {image && <img src={image} alt="generated image" />}
         {!image && size === '1024x1024' && <img src="https://via.placeholder.com/1024x1024" alt="placeholder" />}
         {!image && size === '1792x1024' && <img src="https://via.placeholder.com/1792x1024" alt="placeholder" />}
         {!image && size === '1024x1792' && <img src="https://via.placeholder.com/1024x1792" alt="placeholder" />}
       {imgloading && <div className='flex justify-center bg-blue-400 w-full'>Loading...</div>}
-    <form className='grid grid-cols-2 bg-slate-100' onSubmit={handleSubmit}>
-      <div className='flex justify-center' >
-        <label htmlFor="prompt">Prompt:</label>
-        <input className='w-full' type="text" id="prompt" value={prompt} onChange={handlePromptChange} />
+    <form className='flex flex-col bg-grey-800' onSubmit={handleSubmit}>
+      <div className='flex ' >
+        <label className='mr-2 font-bold ' htmlFor="prompt">Prompt:</label>
+        <textarea className='w-full bg-transparent ring-2' type="text" id="prompt" value={prompt} onChange={handlePromptChange} />
       </div>
-      <div className='flex justify-center'>
-        <label htmlFor="quality">Quality:</label>
-        <select id="quality" value={quality} onChange={handleQualityChange}>
+      <div className='flex '>
+        <label className='mr-2 font-bold' htmlFor="quality">Quality:</label>
+        <select className='ml-2 bg-transparent' id="quality" value={quality} onChange={handleQualityChange}>
           <option value="standard">Standard</option>
           <option value="hd">HD</option>
         </select>
       </div>
-      <div className='flex justify-center' >
-        <label htmlFor="size">Size:</label>
-        <select id="size" value={size} onChange={handleSizeChange}>
+      <div className='flex ' >
+        <label className='mr-2 font-bold' htmlFor="size">Size:</label>
+        <select className='ml-2 bg-transparent' id="size" value={size} onChange={handleSizeChange}>
           <option value="1024x1024">1024x1024</option>
           <option value="1792x1024">1792x1024</option>
           <option value="1024x1792">1024x1792</option>
         </select>
       </div>
-      <div className='flex justify-center' >
-        <label htmlFor="style">Style:</label>
-        <select id="style" value={style} onChange={handleStyleChange}>
+      <div className='flex ' >
+        <label className='mr-2 font-bold' htmlFor="style">Style:</label>
+        <select className='ml-2 bg-transparent' id="style" value={style} onChange={handleStyleChange}>
           <option value="vivid">Vivid</option>
           <option value="natural">Natural</option>
         </select>
       </div>
     </form>
     <div className='flex flex-col space-y-2 justify-center'>
-      {!imgloading && <button className='rounded full text-white bg-gradient-to-r from-green-500 to-red-500' type="submit" onClick={handleSubmit}>Submit</button>}
+      {!imgloading && <button className='rounded full text-white bg-gradient-to-r from-green-500 to-red-500 mt-4' type="submit" onClick={handleSubmit}>Submit</button>}
       {image && <button className='rounded full text-white bg-gradient-to-r from-blue-500 to-red-500' onClick={handleSubmit}>Regenerate</button>}
       {image && <button className='rounded full text-white w-full bg-gradient-to-r from-purple-500 to-orange-500' onClick={handleDownload}>Download Image</button>}
     </div>  

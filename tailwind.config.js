@@ -9,6 +9,11 @@ export default {
     extend: {
       fontFamily: {
         'inter': ['Inter', 'sans-serif'],
+      },
+      colors: {
+        'primary': '#14EF85',
+        'secondary': '#FFFAD1',
+        'primary-light': '#CEFF98',
       }
     },
     screens: {

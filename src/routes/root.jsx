@@ -48,7 +48,7 @@ const BlogChat = () => {
 
 function Root() {
   const [user, setUser] = useState(null);
-  const [openTool, setOpenTool] = useState(null);
+  const [openTool, setOpenTool] = useState('account');
 
   console.log('User:', user);
   console.log('Open tool:', openTool);
@@ -86,7 +86,7 @@ function Root() {
 
   const Nav = () => {
     return (
-      <nav className="h-full w-16 m-0 flex flex-col bg-gray-200 text-white drop-shadow-xl space-y-8 items-center justify-center">
+      <nav className="h-full w-16 m-0 flex flex-col bg-gray-800 text-white drop-shadow-xl space-y-8 items-center justify-center">
         <NavItem name="social" icon={TbSocial} onClick={() => setOpenTool('social')} />
         <NavItem name="blog" icon={FaMicroblog} onClick={() => setOpenTool('blog')} />
         <NavItem name="image" icon={FaRegImage} onClick={() => setOpenTool('image')} />
@@ -123,7 +123,7 @@ function Root() {
     
 
   return (
-    <div className='flex font-inter h-screen'>
+    <div className='flex h-screen text-white'>
     {user && <Nav />}
     <div className='flex flex-col w-full overflow-y-auto'>  
       <Header />

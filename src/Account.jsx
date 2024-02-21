@@ -36,17 +36,17 @@ function Account({setUser, getUser, setOpenTool, logout, user}) {
         }
     };
 
-    // const googleAuth = () => {
-    //     window.open(api + '/auth/google/callback', '_self');
-    // };
+    const googleAuth = () => {
+        window.open(api + '/auth/google/callback', '_self');
+    };
 
     const passwordAuth = async (event) => {
         event.preventDefault();
         console.log('passwordAuth')
         try {
-            // console.log('passwordAuth')
-            // console.log(email)
-            // console.log(password)
+            console.log('passwordAuth')
+            console.log(email)
+            console.log(password)
             const response = await axios.post( api + '/auth/login/password', { email, password });
             setLocalAuthError('');
             console.log()
@@ -64,10 +64,10 @@ function Account({setUser, getUser, setOpenTool, logout, user}) {
         <>
         {user ? (
             <div className='container mx-auto  h-[75vh] sm:4/4 md:w-3/4 align-center'>
-                <h1>Welcome {user.name}</h1>
-                <button onClick={logout} className='flex space-x-2 bg-red-600 hover:bg-red-400 rounded-lg' >
-                    <p>Click here to log out</p> 
-                    <FaSignOutAlt size='24px'  />
+                <h1 className='text-2xl'>Welcome {user.name}</h1>
+                <button onClick={logout} className='flex space-x-2 bg-red-600 hover:bg-red-400 rounded-lg mt-4 justify-center' >
+                    <p className='p-2'>Click here to log out</p> 
+                    <FaSignOutAlt className='mt-2' size='24px'  />
                 </button>
             </div>
         ) : (
@@ -75,11 +75,11 @@ function Account({setUser, getUser, setOpenTool, logout, user}) {
             <div className='container mx-auto  h-[75vh] sm:4/4 md:w-3/4 space-y-10'>
             <h1 className='text-4xl'>Select a way to Sign in:</h1>
 
-            {/* <div className='container  space-y-5 p-2'>
+            <div className='container  space-y-5 p-2'>
                     <h1 className='text-2xl'>Sign in with Google</h1>
                     <p>Click the button below to sign in with your Google account. A password is not required if you select this option.</p>
                     <button className='flex bg-gradient-to-r from-blue-600 to-green-500 text-xl text-white rounded-full p-2 hover:bg-black hover:bg-opacity-50' onClick={googleAuth}>Sign in with Google</button>
-            </div> */}
+            </div>
 
             <div className='flex flex-col  space-y-5 p-2'>
                 <h1 className='text-2xl'>Sign up</h1>
