@@ -1,4 +1,5 @@
 import Button from './components/Button';
+import InfoCard from './components/InfoCard';
 
 export default function Landing() {   
     function goHome(e) {
@@ -25,8 +26,23 @@ export default function Landing() {
                         </p>
                     </div>
                 </div>
-                        <button className="p-4 rounded-lg bg-gradient-to-l from-orange-500 to-red-500 " onClick={goHome}>Try it out</button>
+                    <div className='justify-center'>
+                        <p className="text-orange-300 text-2xl md:text-4xl text-pretty  mt-4 mb-4 underline decoration-solid decoration-orange-300">
+                            Marketing Your Product Online Has Never Been Easier
+                        </p>
+                    </div>
+                <button className="p-4 rounded-lg bg-gradient-to-l from-orange-500 to-red-500 " onClick={goHome}>Try it out</button>
             </div>
+            
+                <div className="flex flex-col text-white items-center justify-center w-full h-full mt-6">
+                    <h2 className="text-4xl text-center">Our Services</h2>
+                    <div className="flex flex-col md:flex-row w-full justify-center items-center">
+                        <InfoCard imageSrc="src/assets/ai-click-gear-yellow.png" header="Web Design" info="We can design a website for you that will look great on any device. We can also help you with SEO and social media." />
+                        <InfoCard imageSrc="src/assets/ai-click-gear-yellow.png" header="Branding" info="We can help you create a brand that will stand out from the competition. We can also help you with logo design and more." />
+                        <InfoCard imageSrc="src/assets/ai-click-gear-yellow.png" header="Social Media" info="We can help you create content for your social media accounts. We can also help you with social media marketing." />
+                    </div>
+                </div>
+           
         </div>
     )
 }
