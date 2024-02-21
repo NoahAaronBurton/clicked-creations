@@ -64,10 +64,10 @@ function Account({setUser, getUser, setOpenTool, logout, user}) {
         <>
         {user ? (
             <div className='container mx-auto  h-[75vh] sm:4/4 md:w-3/4 align-center'>
-                <h1>Welcome {user.name}</h1>
-                <button onClick={logout} className='flex space-x-2 bg-red-600 hover:bg-red-400 rounded-lg' >
-                    <p>Click here to log out</p> 
-                    <FaSignOutAlt size='24px'  />
+                <h1 className='text-2xl'>Welcome {user.name}</h1>
+                <button onClick={logout} className='flex space-x-2 bg-red-600 hover:bg-red-400 rounded-lg mt-4 justify-center' >
+                    <p className='p-2'>Click here to log out</p> 
+                    <FaSignOutAlt className='mt-2' size='24px'  />
                 </button>
             </div>
         ) : (
