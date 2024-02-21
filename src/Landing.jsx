@@ -23,7 +23,7 @@ export default function Landing() {
                     <div className="flex-1  w-3/4">
                         {/* <img className="float-right ml-4  w-1/4 object-contain" src="src/assets/ai-click-gear-yellow.png" /> */}
                         <p className="text-2xl md:text-4xl text-center font-bold text-balance">HELPING YOUR BRAND GROW WITH ARTIFICIAL INTELLIGENCE</p>
-                        <p className="text-lg text-pretty mt-4 mb-4">
+                        <p className="text-lg text-pretty text-center mt-4 mb-4">
                             Web Design, Branding, SEO, Social Media Content, Creating Video & Photos, Blog Posting, Avatar Creation etc. If its digital we can create it!
                         </p>
                     </div>
