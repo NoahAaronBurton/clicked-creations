@@ -10,7 +10,6 @@ import {
 import Root from './routes/root.jsx'
 import Landing from './Landing.jsx';
 
-// todo: serve landing page
 
 const router = createBrowserRouter([
   {
