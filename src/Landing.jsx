@@ -5,13 +5,13 @@ export default function Landing() {
     }
     return (
         <div className="flex flex-col justify-items-center w-full overflow-y-auto text-black">
-            <div id="jumbotron" className="flex flex-col h-full w-full items-center justify-center bg-primary">
+            <div id="jumbotron" className="flex flex-col h-full w-full items-center justify-center bg-gradient-to-b from-primary to-[#27272A]">
                 <div className="flex flex-col text-balance items-center ">
                     <h1 className="sm:text-4xl md:text-6xl mb-6 md:mb-20">
                         Clicked Creations
                     </h1>
                 </div>
-                <div className="flex flex-col md:flex-row md:w-3/4">
+                <div className="flex flex-col justify-center md:flex-row md:w-3/4">
                     <div className="flex-1">
                         <p className="text-2xl md:text-4xl text-pretty">HELPING YOUR BRAND GROW WITH ARTIFICIAL INTELLIGENCE</p>
                         <p className="text-lg text-pretty">
