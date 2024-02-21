@@ -9,34 +9,34 @@ export default function Landing() {
         window.location.href = "/home";
     }
     return (
-        <div className="flex flex-col w-full overflow-y-auto bg-fixed bg-overlay" style={{backgroundImage}}>
-            <div id="jumbotron" className="flex flex-col px-2 h-full w-full items-center justify-center text-black">
+        <div className="flex flex-col w-full overflow-y-auto bg-fixed bg-overlay text-white p-2 md:px-40" style={{backgroundImage}}>
+            <div id="jumbotron" className="flex flex-col px-2 h-full w-full items-center justify-center">
                 <div className="flex justify-between items-center w-full mb-6 md:mb-20">
-                    <h1 className="sm:text-4xl md:text-6xl">
+                    <h1 className="sm:text-2xl md:text-4xl p-4">
                         <strong>Clicked</strong> Creations
                     </h1>
                     <Button onClick={goHome}>
                         Login or Sign Up
                     </Button>
                 </div>
-                <div className="flex justify-center">
+                <div className="flex justify-center ">
                     <div className="flex-1  w-3/4">
-                        <img className="float-right ml-4  w-1/4 object-contain" src="src/assets/ai-click-gear-yellow.png" />
-                        <p className="text-2xl md:text-4xl text-pretty ">HELPING YOUR BRAND GROW WITH ARTIFICIAL INTELLIGENCE</p>
+                        {/* <img className="float-right ml-4  w-1/4 object-contain" src="src/assets/ai-click-gear-yellow.png" /> */}
+                        <p className="text-2xl md:text-4xl text-center font-bold text-balance">HELPING YOUR BRAND GROW WITH ARTIFICIAL INTELLIGENCE</p>
                         <p className="text-lg text-pretty mt-4 mb-4">
                             Web Design, Branding, SEO, Social Media Content, Creating Video & Photos, Blog Posting, Avatar Creation etc. If its digital we can create it!
                         </p>
                     </div>
                 </div>
                     <div className='justify-center'>
-                        <p className="text-orange-300 text-2xl md:text-4xl text-pretty  mt-4 mb-4 underline decoration-solid decoration-orange-300">
+                        <p className=" text-2xl md:text-4xl text-balance text-center  mt-4 mb-4 underline decoration-solid decoration-orange-300">
                             Marketing Your Product Online Has Never Been Easier
                         </p>
                     </div>
                 <button className="p-4 rounded-lg bg-gradient-to-l from-orange-500 to-red-500 " onClick={goHome}>Try it out</button>
             </div>
             
-                <div className="flex flex-col text-white items-center justify-center w-full h-full mt-6">
+                <div className="flex flex-col items-center justify-center w-full h-full mt-6">
                     <h2 className="text-4xl text-center">Our Services</h2>
                     <div className="flex flex-col md:flex-row w-full justify-center items-center">
                         <InfoCard imageSrc="src/assets/ai-click-gear-yellow.png" header="Web Design" info="We can design a website for you that will look great on any device. We can also help you with SEO and social media." />
