@@ -55,7 +55,7 @@ const Chat = ({initialMessage, onSendChat}) => {
               Send
             </button>}
             {isLoading && <p>Loading...</p>}
-            <textarea className='w-full rounded drop-shadow-xl ring-2 text-white' value={userMessage} placeholder='What would you like to post? Please provide an ideal length, content direction, and tone/style' onChange={e => setUserMessage(e.target.value)} />
+            <textarea className='w-full rounded drop-shadow-xl ring-2 text-black' value={userMessage} placeholder='What would you like to post? Please provide an ideal length, content direction, and tone/style' onChange={e => setUserMessage(e.target.value)} />
           </div>
         </div>
       </div>

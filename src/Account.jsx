@@ -38,6 +38,7 @@ function Account({setUser, getUser, setOpenTool, logout, user}) {
 
     const googleAuth = () => {
         window.open(api + '/auth/google/callback', '_self');
+        
     };
 
     const passwordAuth = async (event) => {
@@ -64,7 +65,8 @@ function Account({setUser, getUser, setOpenTool, logout, user}) {
         <>
         {user ? (
             <div className='container mx-auto  h-[75vh] sm:4/4 md:w-3/4 align-center'>
-                <h1 className='text-2xl'>Welcome {user.name}</h1>
+                <h1 className='text-4xl mb-10'> <strong>Welcome to Clicked Creations,</strong>  {user.name}!</h1>
+                <p className="text-lg mb-10">Select a tool on the left to get started.</p>
                 <button onClick={logout} className='flex space-x-2 bg-red-600 hover:bg-red-400 rounded-lg mt-4 justify-center' >
                     <p className='p-2'>Click here to log out</p> 
                     <FaSignOutAlt className='mt-2' size='24px'  />
@@ -88,6 +90,7 @@ function Account({setUser, getUser, setOpenTool, logout, user}) {
                     <label>
                         <p>Name:</p>
                         <input
+                            className='text-black'
                             type="text"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
@@ -97,6 +100,7 @@ function Account({setUser, getUser, setOpenTool, logout, user}) {
                     <label>
                         <p>Email:</p>
                         <input
+                            className='text-black'
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
@@ -106,6 +110,7 @@ function Account({setUser, getUser, setOpenTool, logout, user}) {
                     <label>
                         <p>Password:</p>
                         <input
+                            className='text-black'
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
@@ -115,6 +120,7 @@ function Account({setUser, getUser, setOpenTool, logout, user}) {
                     <label>
                         <p>Confirm Password:</p>
                         <input
+                            className='text-black'
                             type="password"
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
@@ -134,6 +140,7 @@ function Account({setUser, getUser, setOpenTool, logout, user}) {
                         <label>
                             <p>Email:</p>
                             <input
+                                className='text-black'
                                 type="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -143,6 +150,7 @@ function Account({setUser, getUser, setOpenTool, logout, user}) {
                         <label>
                             <p>Password:</p>
                             <input
+                                className='text-black'
                                 type="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
