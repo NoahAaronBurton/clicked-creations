@@ -41,13 +41,13 @@ const ImageForm = () => {
       style: style
     },
     { withCredentials: true });
-    console.log(data);
+    // console.log(data);
     // Create a data URL from the Base64 string
     const imageUrl = `data:image/jpeg;base64,${data.data[0].b64_json}`;
 
     setImgLoading(false);
     setImage(imageUrl);
-    console.log('image:', imageUrl);
+    // console.log('image:', imageUrl);
 } catch (error) {
   setImgLoading(false);
     console.log(error);

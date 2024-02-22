@@ -24,10 +24,10 @@ function Account({setUser, getUser, setOpenTool, logout, user}) {
             return;
         }
         try {
-            console.log('signupSubmit')
+            // console.log('signupSubmit')
             const response = await axios.post( api + '/auth/signup', { email, password, name });
             setSignupError('');
-            console.log(response.data);
+            // console.log(response.data);
             setUser(response.data.user);
             setOpenTool('social');
         } catch (error) {
@@ -43,15 +43,15 @@ function Account({setUser, getUser, setOpenTool, logout, user}) {
 
     const passwordAuth = async (event) => {
         event.preventDefault();
-        console.log('passwordAuth')
+        // console.log('passwordAuth')
         try {
-            console.log('passwordAuth')
-            console.log(email)
-            console.log(password)
+            // console.log('passwordAuth')
+            // console.log(email)
+            // console.log(password)
             const response = await axios.post( api + '/auth/login/password', { email, password });
             setLocalAuthError('');
-            console.log()
-            console.log(response.data);
+            // console.log()
+            // console.log(response.data);
             setUser(response.data.user);
             setOpenTool('social');
         } catch (error) {

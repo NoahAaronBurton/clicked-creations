@@ -50,8 +50,8 @@ function Root() {
   const [user, setUser] = useState(null);
   const [openTool, setOpenTool] = useState('account');
 
-  console.log('User:', user);
-  console.log('Open tool:', openTool);
+  // console.log('User:', user);
+  // console.log('Open tool:', openTool);
 
 
   // get user info from server
@@ -60,7 +60,7 @@ function Root() {
       const url = api + '/auth/login/success';
       const { data } = await axios.get(url, { withCredentials: true });
       setUser(data.user);
-      console.log(data.user);
+      // console.log(data.user);
 
 
     } catch (error) {
