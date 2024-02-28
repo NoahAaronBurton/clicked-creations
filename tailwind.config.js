@@ -8,12 +8,16 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'inter': ['Inter', 'sans-serif'],
+        'poppins': ['Poppins', 'sans-serif'],
       },
       colors: {
         'primary': '#14EF85',
-        'secondary': '#FFFAD1',
-        'primary-light': '#CEFF98',
+        'secondary': '#C1FFE7',
+        'darkest': '#171717',
+        'darker': '#282828',
+        'dark': '#3F3F3F',
+        'pure-white': '#FFFFFF',
+
       }
     },
     screens: {
