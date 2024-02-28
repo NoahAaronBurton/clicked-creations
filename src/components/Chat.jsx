@@ -32,8 +32,8 @@ const Chat = ({initialMessage, onSendChat}) => {
                   <p className="bg-blue-500 text-black rounded-lg p-2">{message.content}</p>    
                 ) : (
                   <>
-                    <p className="bg-gray-300 text-black rounded-lg p-2">{message.content}</p>
-                    <p className='text-black'>Social Assistant</p>
+                    <p className="bg-dark text-white rounded-lg p-2">{message.content}</p>
+                    <p className='text-white'>Social Assistant</p>
                   </>
                 )}
               </div>
@@ -46,12 +46,12 @@ const Chat = ({initialMessage, onSendChat}) => {
   
     return (
       <div className="container mx-auto h-[75vh] sm:4/4 md:w-3/4">
-        <div className="flex flex-col justify-between bg-gray-400 drop-shadow-xl p-4 rounded  h-full shadow-lg w-full ">
+        <div className="flex flex-col justify-between bg-darker drop-shadow-xl p-4 rounded  h-full shadow-lg w-full ">
           <div className="overflow-auto h-full">
             {renderMessages()}
           </div>
           <div className='flex w-full space-x-2'>
-            {!isLoading && <button className="bg-blue-300 text-white px-4 py-2 rounded drop-shadow-xl" onClick={sendChat}>
+            {!isLoading && <button className="bg-secondary text-black px-4 py-2 rounded drop-shadow-xl" onClick={sendChat}>
               Send
             </button>}
             {isLoading && <p>Loading...</p>}

@@ -29,3 +29,5 @@ node_modules/
 # Ignore .env file
 .env
 dist/
+.env.staging
+.netlify
