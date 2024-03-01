@@ -29,7 +29,7 @@ const Chat = ({initialMessage, onSendChat}) => {
             return (
               <div key={index} className='rounded-lg p-2 mb-2 drop-shadow-lg'>
                 {message.role === 'user' ? (
-                  <p className="bg-blue-500 text-black rounded-lg p-2">{message.content}</p>    
+                  <p className="bg-secondary text-black rounded-lg p-2">{message.content}</p>    
                 ) : (
                   <>
                     <p className="bg-dark text-white rounded-lg p-2">{message.content}</p>

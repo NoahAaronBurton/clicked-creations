@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useState } from 'react';
 const api = import.meta.env.VITE_API_URL;
 import { FaSignOutAlt } from 'react-icons/fa';
+import Button from './components/Button';
 
 function Account({setUser, getUser, setOpenTool, logout, user}) {
     const [email, setEmail] = useState('');
@@ -66,11 +67,11 @@ function Account({setUser, getUser, setOpenTool, logout, user}) {
         {user ? (
             <div className='container mx-auto  h-[75vh] sm:4/4 md:w-3/4 align-center'>
                 <h1 className='text-4xl mb-10'> <strong>Welcome to Clicked Creations,</strong>  {user.name}!</h1>
-                <p className="text-lg mb-10">Select a tool on the left to get started.</p>
-                <button onClick={logout} className='flex space-x-2 bg-red-600 hover:bg-red-400 rounded-lg mt-4 justify-center' >
-                    <p className='p-2'>Click here to log out</p> 
-                    <FaSignOutAlt className='mt-2' size='24px'  />
-                </button>
+                <p className="text-lg mb-10 text-white">Select a tool on the left to get started.</p>
+                <Button className='flex' onClick={logout}>
+                    Click here to log out
+                    <FaSignOutAlt className='ml-2' size='20px' />
+                </Button>
             </div>
         ) : (
 
@@ -85,7 +86,7 @@ function Account({setUser, getUser, setOpenTool, logout, user}) {
 
             <div className='flex flex-col  space-y-5 p-2'>
                 <h1 className='text-2xl'>Sign up</h1>
-                <p>Sign up with your email and a password.</p>
+                <p className='text-white'>Sign up with your email and a password.</p>
                 <form className='grid grid-cols-2' onSubmit={signupSubmit}>
                     <label>
                         <p>Name:</p>
@@ -128,14 +129,16 @@ function Account({setUser, getUser, setOpenTool, logout, user}) {
                         />
                     </label>
                 </form>
-                <button className='justify-center w-full mt-4 rounded-full bg-gradient-to-r from-red-500 to-orange-500 text-white' onClick={signupSubmit}>Sign Up</button>
+                <Button onClick={signupSubmit}>
+                    Sign Up
+                </Button>
                 {signupError && <div className='border-2 border-red-500/100'><p>{signupError}</p></div>}
             </div>    
 
 
             <div className='flex flex-col  space-y-5 p-2'>
                     <h1 className='text-2xl'>Log in</h1>
-                    <p>If you already have an account, sign in below:</p>
+                    <p className='text-white'>If you already have an account, sign in below:</p>
                     <form onSubmit={passwordAuth}>
                         <label>
                             <p>Email:</p>
@@ -158,7 +161,9 @@ function Account({setUser, getUser, setOpenTool, logout, user}) {
                             />
                         </label>
                     </form>
-                        <button className='justify-center w-full mt-4 rounded-full bg-gradient-to-r from-purple-400 to-orange-500 text-white' onClick={passwordAuth}>Log In</button>
+                    <Button onClick={passwordAuth}>
+                        Log In
+                    </Button>
                         {LocalAuthError && <div className='border-2 border-red-500/100'><p>{LocalAuthError}</p></div>}
             </div>
         </div>

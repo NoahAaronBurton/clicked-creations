@@ -1,6 +1,6 @@
-export default function Button({ onClick, children, className }) {
+export default function Button({ onClick, children, className='' }) {
     return (
-        <button onClick={onClick} className={`p-2 rounded-lg bg-secondary outline outline-3 text-black text-nowrap ${className}`}>
+        <button onClick={onClick} className={`p-2 rounded-lg bg-dark ring-2 hover:ring-4 ring-primary text-white text-nowrap ${className}`}>
             {children}
         </button>
     );
